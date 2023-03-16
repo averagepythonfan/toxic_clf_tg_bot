@@ -1,9 +1,31 @@
 version: '3.9'
 
 services:
-  bot_toxic_stable_ver1:
+  server_stable:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/server/Dockerfile
+    container_name: fastapi
+    volumes:
+      - .:/app
+    networks:
+      - toxic_net
+
+  bot_toxic_stable_ver5:
+    build:
+      context: .
+      dockerfile: docker/bot/Dockerfile
+    container_name: toxic_bot
+    depends_on:
+      - server_stable
     env_file:
       - .env
+    volumes:
+      - .:/app
+    networks:
+      - toxic_net
+
+networks:
+  toxic_net:
+    external: true
+    name: toxic_net
