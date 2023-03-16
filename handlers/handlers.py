@@ -7,8 +7,9 @@ import aiohttp
 import logging
 from aiogram import types, Router
 from aiogram.filters import Command, Text
+from config import FASTAPI_ADDRESS
 
-API_URL = 'http://172.21.0.2:8888/toxicity'
+API_URL = FASTAPI_ADDRESS
 headers = {
     'accept': 'application/json',
     'Content-Type': 'application/json',
@@ -36,7 +37,7 @@ async def main_handler(message: types.Message):
     '''
     try:
         msg = str(message.text)
-        playload = { 'input': message.text }
+        playload = { 'input': msg }
         async with aiohttp.ClientSession() as session:
             async with session.post(API_URL, headers=headers, json=playload) as resp:
                 text = await resp.json()

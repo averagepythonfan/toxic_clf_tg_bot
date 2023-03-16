@@ -1,4 +1,5 @@
 test.py
+test_server.py
 .env
 /__pycache__
 /handlers/__pycache__

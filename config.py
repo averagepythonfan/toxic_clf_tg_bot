@@ -1,4 +1,4 @@
 import os
 
-TOKEN = os.getenv('TOKEN')
-API_KEY = os.getenv('API_KEY')
+TOKEN: str = os.getenv('TOKEN')
+FASTAPI_ADDRESS: str = os.getenv('FASTAPI_ADDRESS')
